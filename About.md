@@ -45,5 +45,5 @@ This function is used to compute the value of a European call option using Monte
 #### Returns:
 - `mceco`: Value of the European call option calculated using Monte Carlo simulation
 
-### (Add descriptions of other relevant functions used in the program if applicable)
+
 
