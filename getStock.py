@@ -82,23 +82,53 @@ def print_stock_info(info):
         print("Failed to retrieve stock information.")
 
 def grahams_valuation(info):
-    if info:
-        (company_name, ticker_symbol, exchange, sector, industry, market_cap,
-        previous_close_price, open_price, current_price, volume,
-        fifty_two_week_high, fifty_two_week_low, eps) = info
+    """
+    Calculate Graham's valuation for a stock based on the provided information.
 
-        AAA_bar = 0.044 * 100
-        no_growth = 0.085 * 100
-        # eps_ = float(eps)
+    Parameters:
+    info (tuple): A tuple containing stock information including:
+                  - Company name
+                  - Ticker symbol
+                  - Exchange
+                  - Sector
+                  - Industry
+                  - Market capitalization
+                  - Previous close price
+                  - Open price
+                  - Current price
+                  - Volume
+                  - 52-week high
+                  - 52-week low
+                  - Earnings per share
+
+    Returns:
+    float: Graham's valuation for the stock.
+
+    """
+    if info:
+        # Unpack the tuple containing stock information
+        (company_name, ticker_symbol, exchange, sector, industry, market_cap,
+         previous_close_price, open_price, current_price, volume,
+         fifty_two_week_high, fifty_two_week_low, eps) = info
+
+        # Constants for the calculation
+        AAA_bar = 0.044 * 100  # AAA corporate bond rate
+        no_growth = 0.085 * 100  # No-growth rate
+
         try:
+            # Prompt user to input expected growth rate
             g = float(input("What is your expected growth rate: "))
         except Exception as e:
             print(f'Error: {e}')
+
         try:
+            # Prompt user to input current yield for a AAA corporate Bond
             Y = float(input("What the current yield for a AAA corporate Bond: "))
         except Exception as e:
             print(f'Error: {e}')
-        V = (eps*(no_growth+2*g)*AAA_bar)/(Y)
+
+        # Calculate Graham's valuation
+        V = (eps * (no_growth + 2 * g) * AAA_bar) / Y
         return V
 
 
